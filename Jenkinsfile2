@@ -1,0 +1,30 @@
+pipeline {
+    agent any
+
+    environment {
+        // Telegram configuration
+        TOKEN = credentials('telegram-credentials')
+        CHAT_ID = credentials('Telegram_ChatID')
+    }
+
+    stages {
+        stage('Run Stage') {
+            steps {
+                echo 'Running'
+            }
+        }
+    }
+
+    post {
+        success {
+            script {
+                bat "curl -X POST -H \"Content-Type: application/json\" -d \"{\\\"chat_id\\\":${CHAT_ID}, \\\"text\\\": \\\"Pipeline succeeded!\\\", \\\"disable_notification\\\": false}\" https://api.telegram.org/bot${TOKEN}/sendMessage"
+            }
+        }
+        failure {
+            script {
+                bat "curl -X POST -H \"Content-Type: application/json\" -d \"{\\\"chat_id\\\":${CHAT_ID}, \\\"text\\\": \\\"Pipeline failed!\\\", \\\"disable_notification\\\": false}\" https://api.telegram.org/bot${TOKEN}/sendMessage"
+            }
+        }
+    }
+}
