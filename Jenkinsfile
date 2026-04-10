@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent
     tools {
         maven 'Mavenjenkins'
     }
@@ -7,7 +7,7 @@ pipeline {
     stages {
         stage('Git Checkout') {
             steps {
-                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/urbanoreyser/Sonarqube.git']])
+                checkout scmGit(branches: [[name: 'main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/urbanoreyser/Sonarqube.git']])
                 echo 'Git Checkout Completed'
             }
         }
