@@ -11,7 +11,7 @@ parameters {
     stages {
         stage(' clone the repositroy ') {
             steps {
-               git branch: "${params.BRANCH}", credentialsId: 'github-cred', url: 'https://github.com/urbanoreyser/Sonarqube.git' 
+               git branch: "${params.BRANCH}", url: 'https://github.com/urbanoreyser/Sonarqube.git' 
             }
         }
         
