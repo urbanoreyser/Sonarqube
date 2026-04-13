@@ -1,7 +1,7 @@
 pipeline {
     agent any
     tools {
-  maven 'Maven-3.9.14'
+  maven 'mavenjenkins'
 }
 parameters {
 	     string(name: 'BRANCH', defaultValue: '', description: 'Branch to build')
