@@ -24,7 +24,7 @@ parameters {
 
 	    stage('Static code analysis') {
             steps {
-        withSonarQubeEnv('sonarqube-token') {
+        withSonarQubeEnv('jenkins') {
                     sh  "mvn sonar:sonar"
                 }
                 }
